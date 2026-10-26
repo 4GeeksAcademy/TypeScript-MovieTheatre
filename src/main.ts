@@ -1,12 +1,10 @@
+// Entry point: in the browser it starts the seat map website,
+// in the terminal (`npm run console`) it runs the console demo.
 if (typeof document !== "undefined") {
-  import("./style.css").then(() => {
-    const app = document.querySelector<HTMLParagraphElement>("#app");
-    if (app) {
-      app.textContent = "If you can see this, Tailwind is working.";
-    }
-  });
+  import("./style.css");
+  import("./web");
+} else {
+  import("./demo");
 }
-
-console.log("Hello from src/main.ts");
 
 export {};

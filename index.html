@@ -3,22 +3,58 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Hello World with Typescript</title>
+    <title>Cinema Seat Manager</title>
   </head>
-  <body class="min-h-screen bg-slate-100 text-slate-900">
-    <main class="mx-auto flex min-h-screen max-w-2xl flex-col items-center justify-center gap-6 p-6">
-      <h1 class="text-4xl font-bold tracking-tight">Hello World with Typescript</h1>
-
-      <section class="w-full max-w-md overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm">
-        <img
-          src="/rigo-baby.jpg"
-          alt="Hello Rigo"
-          class="h-64 w-full bg-slate-50 object-contain p-2"
-        />
-        <div class="p-5">
-          <h2 class="text-xl font-semibold text-slate-900">Hello Rigo</h2>
-          <p id="app" class="mt-2 text-sm text-slate-600"></p>
+  <body class="min-h-screen bg-slate-950 text-slate-100">
+    <main class="mx-auto flex max-w-4xl flex-col gap-6 px-4 py-8">
+      <header class="flex flex-wrap items-end justify-between gap-4">
+        <div>
+          <h1 class="text-3xl font-bold tracking-tight">Cinema Seat Manager</h1>
+          <p class="text-sm text-slate-400">Screening room · 8 rows × 10 seats · click an available seat to reserve it</p>
         </div>
+        <div class="flex gap-3">
+          <div class="rounded-xl border border-slate-800 bg-slate-900 px-4 py-2 text-center">
+            <p class="text-xs uppercase tracking-wide text-slate-400">Available</p>
+            <p id="available-count" class="text-2xl font-semibold text-emerald-400">80</p>
+          </div>
+          <div class="rounded-xl border border-slate-800 bg-slate-900 px-4 py-2 text-center">
+            <p class="text-xs uppercase tracking-wide text-slate-400">Occupied</p>
+            <p id="occupied-count" class="text-2xl font-semibold text-rose-400">0</p>
+          </div>
+        </div>
+      </header>
+
+      <section class="rounded-2xl border border-slate-800 bg-slate-900 p-4 sm:p-6">
+        <div class="mx-auto mb-6 h-2 w-3/4 rounded-full bg-gradient-to-r from-slate-700 via-slate-200 to-slate-700"></div>
+        <p class="-mt-4 mb-6 text-center text-xs uppercase tracking-[0.3em] text-slate-400">Screen</p>
+        <div class="overflow-x-auto">
+          <div id="seat-map" class="mx-auto w-max"></div>
+        </div>
+        <div class="mt-6 flex flex-wrap justify-center gap-4 text-xs text-slate-400">
+          <span class="flex items-center gap-2"><span class="inline-block h-4 w-4 rounded bg-emerald-500"></span>L · Available</span>
+          <span class="flex items-center gap-2"><span class="inline-block h-4 w-4 rounded bg-rose-500"></span>X · Occupied</span>
+          <span class="flex items-center gap-2"><span class="inline-block h-4 w-4 rounded bg-amber-400"></span>Suggested pair</span>
+        </div>
+      </section>
+
+      <section class="flex flex-wrap gap-3">
+        <button id="find-pair" class="rounded-lg bg-amber-400 px-4 py-2 font-semibold text-slate-950 hover:bg-amber-300">
+          Find 2 seats together
+        </button>
+        <button id="reserve-pair" class="rounded-lg bg-emerald-500 px-4 py-2 font-semibold text-slate-950 hover:bg-emerald-400" hidden>
+          Reserve this pair
+        </button>
+        <button id="reset-room" class="ml-auto rounded-lg border border-slate-700 px-4 py-2 text-slate-300 hover:bg-slate-800">
+          Reset room
+        </button>
+      </section>
+
+      <section>
+        <p id="message" class="rounded-lg border border-slate-800 bg-slate-900 px-4 py-3 text-sm" aria-live="polite">
+          Ready. Click a seat to reserve it.
+        </p>
+        <h2 class="mt-6 mb-2 text-sm font-semibold uppercase tracking-wide text-slate-400">Activity</h2>
+        <ul id="activity-log" class="flex flex-col gap-1 text-sm text-slate-300"></ul>
       </section>
     </main>
     <script type="module" src="/src/main.ts"></script>
